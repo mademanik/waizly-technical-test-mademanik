@@ -1,0 +1,14 @@
+---
+version: '3.7'
+services:
+  mysql-docker:
+    container_name: mysql-order-service
+    image: mysql:latest
+    volumes:
+      - ./mysql-config/mysql-docker:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: waizly_db
+    restart: always
