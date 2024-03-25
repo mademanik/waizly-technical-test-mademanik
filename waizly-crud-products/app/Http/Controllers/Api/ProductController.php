@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Services\ProductService;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,6 @@ class ProductController extends Controller
 
     public function __construct(ProductService $productService)
     {
-        $this->middleware('auth:admin-api');
         $this->productService = $productService;
     }
 
@@ -22,6 +22,9 @@ class ProductController extends Controller
 
     public function createProduct(Request $request)
     {
+        if (auth()->user()->role !== 'admin') {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
         return $this->productService->createProduct($request);
     }
 
@@ -32,11 +35,17 @@ class ProductController extends Controller
 
     public function updateProductById(Request $request, $id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
         return $this->productService->updateProductById($request, $id);
     }
 
     public function deleteProductById($id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
         return $this->productService->deleteProductById($id);
     }
 }

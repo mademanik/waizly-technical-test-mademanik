@@ -40,15 +40,9 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'admin-api' => [
+        'api' => [
             'driver' => 'jwt',
-            'provider' => 'admin',
-            'hash' => false,
-        ],
-        'subadmin-api' => [
-            'driver' => 'jwt',
-            'provider' => 'subadmin',
-            'hash' => false,
+            'provider' => 'users',
         ],
     ],
 
@@ -73,16 +67,6 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
-        ],
-
-        'admin' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
-        ],
-
-        'subadmin' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Subadmin::class,
         ],
 
         // 'users' => [
