@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function createProduct(Request $request)
     {
         if (auth()->user()->role !== 'admin') {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
+            return response()->json(['error' => 'Unauthorized.'], 401);
         }
         return $this->productService->createProduct($request);
     }
@@ -36,7 +36,7 @@ class ProductController extends Controller
     public function updateProductById(Request $request, $id)
     {
         if (auth()->user()->role !== 'admin') {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
+            return response()->json(['error' => 'Unauthorized.'], 401);
         }
         return $this->productService->updateProductById($request, $id);
     }
@@ -44,7 +44,7 @@ class ProductController extends Controller
     public function deleteProductById($id)
     {
         if (auth()->user()->role !== 'admin') {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
+            return response()->json(['error' => 'Unauthorized.'], 401);
         }
         return $this->productService->deleteProductById($id);
     }
